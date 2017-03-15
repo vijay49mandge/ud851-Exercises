@@ -47,21 +47,11 @@ public class NetworkUtils {
      * @param githubSearchQuery The keyword that will be queried for.
      * @return The URL to use to query the weather server.
      */
-    public static URL buildUrl(String githubSearchQuery) {
+    public static URL buildUrl(String githubSearchQuery) throws MalformedURLException {
         // COMPLETED (1) Fill in this method to build the proper Github query URL
-        Uri builtUri = Uri.parse(GITHUB_BASE_URL).buildUpon()
-                .appendQueryParameter(PARAM_QUERY, githubSearchQuery)
-                .appendQueryParameter(PARAM_SORT, sortBy)
-                .build();
-
-        URL url = null;
-        try {
-            url = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return url;
+        Uri builtUri = Uri.parse(NetworkUtils.GITHUB_BASE_URL).buildUpon().appendQueryParameter(PARAM_QUERY, githubSearchQuery)
+                .appendQueryParameter(PARAM_SORT, sortBy).build();
+        return new URL(builtUri.toString());
     }
 
     /**

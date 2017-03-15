@@ -26,6 +26,11 @@ import com.example.android.datafrominternet.utilities.NetworkUtils;
 
 import java.net.URL;
 
+import com.example.android.datafrominternet.utilities.NetworkUtils;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText mSearchBoxEditText;
@@ -46,19 +51,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // COMPLETED (2) Create a method called makeGithubSearchQuery
-    // COMPLETED (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
-    /**
-     * This method retrieves the search text from the EditText, constructs
-     * the URL (using {@link NetworkUtils}) for the github repository you'd like to find, displays
-     * that URL in a TextView, and finally fires off an AsyncTask to perform the GET request using
-     * our (not yet created) {@link GithubQueryTask}
-     */
     private void makeGithubSearchQuery() {
-        String githubQuery = mSearchBoxEditText.getText().toString();
-        URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
-        mUrlDisplayTextView.setText(githubSearchUrl.toString());
+       // COMPLETED (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
+        String queryFromEditText = mSearchBoxEditText.getText().toString().trim();
+        try {
+            URL queryURL = NetworkUtils.buildUrl(queryFromEditText);
+            mUrlDisplayTextView.setText(queryURL.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "MalFormed URL", Toast.LENGTH_SHORT).show();
+        }
     }
-
+   
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
