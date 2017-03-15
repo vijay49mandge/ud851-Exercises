@@ -76,25 +76,30 @@ public class MainActivity extends AppCompatActivity {
 
     // COMPLETED (14) Create a method called showJsonDataView to show the data and hide the error
     private void showJsonDataView() {
+        // First, make sure the error is invisible
+        mErrorMsgTextView.setVisibility(View.INVISIBLE);
+        // Then, make sure the JSON data is visible
         mSearchResultsTextView.setVisibility(View.VISIBLE);
-        mErrorMsgTextView.setVisibility(View.GONE);
     }
 
     // COMPLETED (15) Create a method called showErrorMessage to show the error and hide the data
     private void showErrorMessage() {
-        mSearchResultsTextView.setVisibility(View.GONE);
+      // First, hide the currently visible data
+        mSearchResultsTextView.setVisibility(View.INVISIBLE);
+      // Then, show the error
         mErrorMsgTextView.setVisibility(View.VISIBLE);
     }
 
     private class GithubQueryTask extends AsyncTask<URL, Void, String> {
 
         // COMPLETED (26) Override onPreExecute to set the loading indicator to visible
-
         @Override
         protected void onPreExecute() {
+            super.onPreExecute();
             mGetDataProgressBar.setVisibility(View.VISIBLE);
             mSearchResultsTextView.setVisibility(View.INVISIBLE);
             mErrorMsgTextView.setVisibility(View.INVISIBLE);
+
         }
 
         @Override
@@ -112,15 +117,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String githubSearchResults) {
             // COMPLETED (27) As soon as the loading is complete, hide the loading indicator
-            mGetDataProgressBar.setVisibility(View.GONE);
+
+            mGetDataProgressBar.setVisibility(View.INVISIBLE);
             if (githubSearchResults != null && !githubSearchResults.equals("")) {
                 // COMPLETED (17) Call showJsonDataView if we have valid, non-null results
-                mSearchResultsTextView.setText(githubSearchResults);
                 showJsonDataView();
+                mSearchResultsTextView.setText(githubSearchResults);
             } else {
+              // COMPLETED (16) Call showErrorMessage if the result is null in onPostExecute
                 showErrorMessage();
             }
-            // COMPLETED (16) Call showErrorMessage if the result is null in onPostExecute
         }
     }
 
