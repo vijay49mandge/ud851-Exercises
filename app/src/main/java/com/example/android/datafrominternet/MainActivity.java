@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
     }
 
+
     // COMPLETED (8) Override onCreateOptionsMenu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
     // COMPLETED (15) If you do NOT handle the menu click, return super.onOptionsItemSelected to let Android handle the menu click
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemThatWasClickedId = item.getItemId();
-        if (itemThatWasClickedId == R.id.action_search) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_search) {
             Context context = MainActivity.this;
-            String textToShow = "Search clicked";
-            Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
+            String message = "Search clicked";
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
