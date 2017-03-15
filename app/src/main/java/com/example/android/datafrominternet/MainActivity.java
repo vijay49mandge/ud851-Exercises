@@ -21,10 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.example.android.datafrominternet.utilities.NetworkUtils;
-
-import java.net.URL;
+import android.widget.Toast;
 
 import com.example.android.datafrominternet.utilities.NetworkUtils;
 
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     // COMPLETED (2) Create a method called makeGithubSearchQuery
     private void makeGithubSearchQuery() {
-       // COMPLETED (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
+        // COMPLETED (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
         String queryFromEditText = mSearchBoxEditText.getText().toString().trim();
         try {
             URL queryURL = NetworkUtils.buildUrl(queryFromEditText);
@@ -62,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "MalFormed URL", Toast.LENGTH_SHORT).show();
         }
     }
-   
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
