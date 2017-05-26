@@ -15,6 +15,7 @@
  */
 package com.example.android.recyclerview;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import android.widget.TextView;
  */
 // COMPLETED (4) From GreenAdapter, extend RecyclerView.Adapter<NumberViewHolder>
 public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
+
 
     // COMPLETED (1) Add a private int variable called mNumberItems
     private int mNumberItems;
@@ -64,6 +66,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     }
 
     // COMPLETED (9) Override getItemCount and return the number of items to display
+
     @Override
     public int getItemCount() {
         return mNumberItems;
